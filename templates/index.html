@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock title %}
+
+{% block content %}
+    {% if request.user.is_authenticated %}
+    <div class="alert alert-dark" role="alert">
+  Добро пожаловать!{{ request.user.email }} <a href="{% url 'data:clinical_research' %}" class="alert-link">Список исследований тут</a>.
+    </div>
+    {% else %}
+    <div class="alert alert-dark" role="alert">
+  Добрый день! Необходимо <a href="{% url 'account:login' %}" class="alert-link">авторизироваться</a>, чтобы пользоваться сервисом.
+    </div>
+    {% endif %}
+
+{% endblock content %}

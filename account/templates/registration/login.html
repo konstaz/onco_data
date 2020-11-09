@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load crispy_forms_filters %}
+
+{% block title %}Login{% endblock title %}
+
+{% block content %}
+    <br><div class="d-flex justify-content-center border border-dark rounded">Вход</div><br>
+ 	<form method="post">
+        {% csrf_token %}
+        {{ form|crispy }}
+ 		<button class="btn btn-dark" type="submit">Войти</button>
+ 	</form>
+    <a class="btn btn-dark" href="{% url 'password_reset' %}">Сбросить Пароль</a>
+{% endblock content %}

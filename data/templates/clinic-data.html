@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %} Clinical Data {% endblock title %}
+
+{% block content %}
+    {% if request.user.is_authenticated %}
+    <table class="table table-dark">
+
+  <thead>
+    <tr>
+      <th scope="col">Спонсор</th>
+      <th scope="col">Дата старта</th>
+      <th scope="col">ФОПы</th>
+      <th scope="col">Монитор</th>
+      <th scope="col">Дата первого пациента</th>
+      <th scope="col">Врачи|Доступы</th>
+      <th scope="col">Пациенты|Статус</th>
+      <th scope="col">SAE</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for data in object_list %}
+    <tr>
+      <th scope="row">{{ data.sponsor }}</th>
+      <td>{{ data.begin_date }}</td>
+      <td>{{ data.f_o_p_data }}</td>
+      <td>{{ data.monitor }}</td>
+      <td>{{ data.first_patient }}</td>
+      <td>{{ data.name_doctor_field }}</td>
+      <td>{{ data.patients_name_status }}</td>
+      <td>{{ data.sae }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+    {% else %}
+    <div class="alert alert-dark" role="alert">
+  Добрый день! Необходимо <a href="{% url 'account:login' %}" class="alert-link">авторизироваться</a>, чтобы пользоваться сервисом.
+    </div>
+    {% endif %}
+{% endblock content %}

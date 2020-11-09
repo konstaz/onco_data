@@ -1,0 +1,54 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyArgumentListInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredPackages">
+        <value>
+          <list size="5">
+            <item index="0" class="java.lang.String" itemvalue="autopep8" />
+            <item index="1" class="java.lang.String" itemvalue="gprof2dot" />
+            <item index="2" class="java.lang.String" itemvalue="asgiref" />
+            <item index="3" class="java.lang.String" itemvalue="django-silk" />
+            <item index="4" class="java.lang.String" itemvalue="Django" />
+          </list>
+        </value>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyPep8Inspection" enabled="true" level="WEAK WARNING" enabled_by_default="true">
+      <option name="ignoredErrors">
+        <list>
+          <option value="E262" />
+          <option value="E114" />
+          <option value="W292" />
+          <option value="E303" />
+          <option value="E501" />
+          <option value="E111" />
+        </list>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="students.models.Teacher.object" />
+          <option value="students.models.Student.object" />
+          <option value="students.models.Student.objects" />
+          <option value="students.models.Student.id" />
+          <option value="students.models.Teacher.DoesNotExist" />
+          <option value="students.models.Teacher.objects" />
+          <option value="students.models.Group.DoesNotExist" />
+          <option value="students.models.Group.objects" />
+          <option value="students.models.Student.DoesNotExist" />
+          <option value="students.models.Group.id" />
+          <option value="students.models.Teacher.id" />
+          <option value="super.save" />
+          <option value="src.account.urls.account" />
+          <option value="src.rate.models.rate" />
+          <option value="src.rate.tasks.*" />
+          <option value="account.views.SignUp" />
+          <option value="account.views.Activate" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>

@@ -1,0 +1,42 @@
+{% load active_tab %}
+
+
+<nav class="navbar navbar-dark bg-dark">
+    {% if request.user.is_authenticated %}
+    <a class="navbar-brand" href="{% url 'index' %}">Начало</a>
+
+    <a class="navbar-brand" href="{% url 'data:clinical_research' %}">Исследования</a>
+    {% else %}
+    <a class="navbar-brand" href="{% url 'index' %}">Добро пожаловать</a>
+
+    <a class="navbar-brand" href="{% url 'data:clinical_research' %}">Исследования</a>
+
+    <a class="navbar-brand" href="{% url 'account:login' %}">Войти</a>
+    {% endif %}
+ 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+ 		<span class="navbar-toggler-icon"></span>
+ 	</button>
+
+ 	<div class="collapse navbar-collapse" id="navbarText">
+ 		<ul class="navbar-nav mr-auto">
+ 			<li class="nav-item {{ request.path|active:'index' }}">
+ 				<a class="nav-link" href="{% url 'index' %}">Домой</a>
+ 			</li>
+ 			{% if request.user.is_authenticated %}
+ 				<li class="nav-item">
+ 					<a class="nav-link" href="{% url 'account:my_profile' request.user.id %}">Мой профиль</a>
+ 				</li>
+                <li class="nav-item">
+ 					<a class="nav-link" href="{% url 'account:sign-up' %}">Создать профиль</a>
+ 				</li>
+ 				<li class="nav-item">
+ 					<a class="nav-link" href="{% url 'account:logout' %}">Выйти</a>
+ 				</li>
+ 			{% else %}
+ 				<li class="nav-item">
+ 					<a class="nav-link" href="{% url 'account:login' %}">Войти</a>
+ 				</li>
+ 			{% endif %}
+ 		</ul>
+ 	</div>
+</nav>

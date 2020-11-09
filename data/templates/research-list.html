@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %} Clinical Research {% endblock title %}
+
+{% block content %}
+    {% if request.user.is_authenticated %}
+    <a href="{% url 'data:add_clinic' %}" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Добавить Исследование</a>
+    <table class="table table-dark">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Исследования</th>
+      <th scope="col">Профиль пациентов</th>
+      <th scope="col">Дата начала</th>
+      <th scope="col">Дата и номер протокола ДФЦ</th>
+      <th scope="col">PI</th>
+      <th scope="col">Последние изменения</th>
+
+    </tr>
+  </thead>
+  <tbody>
+  {% for data in object_list %}
+    <tr>
+      <th scope="row">{{ forloop.counter }}</th>
+      <td><a href="{% url 'data:clinic_data' pk=data.id %}" class="badge badge-light">{{ data.research_name }}</a></td>
+      <td>{{ data.patients_profile }}</td>
+      <td>{{ data.date_condition }}</td>
+      <td>{{ data.protocol_date }}</td>
+      <td>{{ data.PI }}</td>
+      <td>{{ data.update }}</td>
+      <td><a class="btn btn-dark" href="{% url 'data:edit_clinic' pk=data.id %}">Изменить</a></td>
+        <td><a class="btn btn-dark" href="{% url 'data:delete_clinic' pk=data.id %}">Удалить</a></td>
+
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+    {% else %}
+    <div class="alert alert-dark" role="alert">
+  Добрый день! Необходимо <a href="{% url 'account:login' %}" class="alert-link">авторизироваться</a>, чтобы пользоваться сервисом.
+    </div>
+    {% endif %}
+
+{% endblock content %}
