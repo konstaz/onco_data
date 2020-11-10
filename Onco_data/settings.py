@@ -22,13 +22,20 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '4$w1o2#udhpryq9o)qy*dx2^ouir#mjih!dp@x@$b=d^nc_c22'
+# SECRET_KEY = '4$w1o2#udhpryq9o)qy*dx2^ouir#mjih!dp@x@$b=d^nc_c22'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = []
 
+SECRET_KEY = os.environ.get("SECRET_KEY")
+
+DEBUG = int(os.environ.get("DEBUG", default=0))
+
+# 'DJANGO_ALLOWED_HOSTS' should be a single string of hosts with a space between each.
+# For example: 'DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]'
+ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
 
 # Application definition
 
@@ -89,18 +96,30 @@ WSGI_APPLICATION = 'Onco_data.wsgi.application'
 #        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 #    }
 # }
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.environ.get('POSTGRES_DB'),
-        'USER': os.environ.get('POSTGRES_USER'),
-        'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
-        'HOST': os.environ.get('POSTGRES_HOST', '127.0.0.1'),
-        'PORT': os.environ.get('POSTGRES_PORT', '5432'),
-    },
-}
+# DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#        'NAME': os.environ.get('POSTGRES_DB'),
+#        'USER': os.environ.get('POSTGRES_USER'),
+#        'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
+#        'HOST': os.environ.get('POSTGRES_HOST', '127.0.0.1'),
+#        'PORT': os.environ.get('POSTGRES_PORT', '5432'),
+#    },
+#}
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
+
+DATABASES = {
+    "default": {
+        "ENGINE": os.environ.get("SQL_ENGINE", "django.db.backends.sqlite3"),
+        "NAME": os.environ.get("SQL_DATABASE", os.path.join(BASE_DIR, "db.sqlite3")),
+        "USER": os.environ.get("SQL_USER", "user"),
+        "PASSWORD": os.environ.get("SQL_PASSWORD", "password"),
+        "HOST": os.environ.get("SQL_HOST", "localhost"),
+        "PORT": os.environ.get("SQL_PORT", "5432"),
+    }
+}
+
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -136,6 +155,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, '..', 'static_content', 'static')
+
 
 AUTH_USER_MODEL = 'account.User'
 
