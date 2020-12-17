@@ -4,3 +4,5 @@ __pyache__/
 *.pyc
 *.log
 README.md/
+.env.prod/
+.env.prod.db/
